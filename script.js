@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable linebreak-style */
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 // Casi todas las funcionalidades de puppeteer devuelven una Promesa
 
@@ -55,6 +56,10 @@ async function run() {
     if (pageNumber <= data.totalPages) {
       getPageData(pageNumber + 1);
     } else {
+      //Guardar la data en un archivo
+      fs.writeFile('data.json', JSON.stringify(reviews), () => {
+        console.log('data saved');
+      });
       await browser.close();
     }
 
