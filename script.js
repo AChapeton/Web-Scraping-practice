@@ -34,6 +34,8 @@ async function run() {
 
       $reviews.forEach(($review) => {
         data.push({
+          username: $review.querySelector('.Review-name').textContent,
+          rating: $review.querySelector('.Review-stars .fulled').length,
           content: $review
             .querySelector('.Review-description')
             .textContent.trim(),
