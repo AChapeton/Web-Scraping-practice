@@ -11,7 +11,7 @@ async function run() {
   // Abrir nueva página (tab)
   const page = await browser.newPage();
 
-  const reviews = [];
+  let reviews = [];
 
   async function getPageData(pageNumber = 1) {
     // Navegar a una página
@@ -46,6 +46,9 @@ async function run() {
         totalPages,
       };
     });
+
+    //Sobreponiendo data por cada nueva página
+    reviews = [...reviews, ...data.reviews];
 
     console.log(`page ${pageNumber} of ${data.totalPages} completed`);
 
